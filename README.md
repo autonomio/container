@@ -30,4 +30,16 @@ To decomission a container:
 
     ./container destroy
     
+## From repo to container
   
+  1) Include in one folder the autonomio module folder, setup.py and requirements.txt 
+  2) Combine it with everything in this repo
+  3) Inside the folder from command line run: 
+      
+      docker build -t autonomio .
+     
+  4) Once the build completes, to test: 
+  
+      ./container new
+      
+  5) Open your browser and go to http://localhost:4141
