@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+		<title>Autonomio | Augmented Intelligence</title>
+		<meta name="description" content="high level augmented intelligence API">
+		<meta name="keywords" content="NN,neural net, deep learning, AI, artificial intelligence, prediction">
+		<meta name="author" content="Botlab">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<!-- Loading Google Fonts --> 
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700' rel='stylesheet' type='text/css'>
+		<!-- Loading Third Party Styles --> 
+		<link rel="stylesheet" href="css/bootstrap.min.css"> 
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<!-- Loading Theme's Styles -->
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<!-- Script for IE < 9 -->
+		<!--[if lt IE 9]>
+		<script src="third-party/respond/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- Page Content -->
+		<div class="page-content">
+            <!-- Header - Fullscreen -->
+            <header class="navigation nav-fullscreen">	
+                <!-- Header Wrapper -->
+                <div class="main-nav nav-icons-right header-icons header-right sticky full-width">
+                    <div class="navbar navbar-default" role="navigation">
+						<div class="container active">
+							<div class="navbar-header">
+                                <a href="#" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <ul class="bar-icon-wrapper">
+                                        <li class="bar-icon"></li>
+                                        <li class="bar-icon"></li>
+                                        <li class="bar-icon"></li>
+                                    </ul>
+								</a>
+								<!-- Logo -->
+								<a class="logo" href="index.html">
+									<img alt="image" src="images/transparent_logo.png" />
+								</a>
+							</div>
+							<!-- Navigation starts --> 
+                            <div class="navbar-icons">
+								<ul class="nav navbar-nav navbar-right">
+									<li class="menu-icon">
+										<a class="full-screen-menu-trigger" href="#">
+											<ul class="bar-icon-wrapper">
+												<li class="bar-icon"></li>
+												<li class="bar-icon"></li>
+												<li class="bar-icon"></li>
+											</ul>
+										</a>
+									</li>
+								</ul>
+                            </div>
+                        </div>
+						<div class="full-screen-header">
+							<div class="nav-container">
+								<div class="nav-holder">
+									<div class="inner-content">
+										<ul class="full-screen-nav">
+											<!-- Navigation Links -->
+											<li><a href="index.html">Data</a></li>			
+											<li><a href="create.html">Model</a></li>
+											<li><a href="result.html"> Result</a></li>
+											<li><a href="http://0.0.0.0:8888/tree"> Notebook</a></li>		
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="credits">
+								<span>Made with <i class="fa fa-heart"></i> by Botlab</span>
+							</div>
+						</div>
+                    </div>
+				</div>
+			</header> 
+		</div>
+		<!-- Header ENDS -->
+		<!-- Content -->
+		<!-- First row of content -->
+		<div class="section-admin container-fluid">
+			<div class="row">
+				<!-- Form starts -->	
+				<form action="upload_file.php" method="post" enctype="multipart/form-data">
+				<!-- First column of first row -->
+				<div class="col-md-3">
+  					<div class="panel-body">
+    				<h4>UPLOAD DATA OR</h4>
+    					<div class="form-group">
+        				<input class="btn btn-file" type="file" name="fileToUpload" id="fileToUpload">
+    					</div>
+  					</div>
+				</div>
+				<!-- Second column of first row -->
+ 				<div class="col-md-4">
+  					<div class="panel-body">
+  					<h4>PICK DATASETS</h4>
+      					<div class="form-group">
+      						<select class="select form-control" id="flattening" name="flattening">
+	       						<option value="median">Parties and Employment</option>
+	       						<option value="IQR">Programmatic Ad Fraud</option>
+	       						<option value="mean">Election in Twitter</option>
+	       						<option value="none">Tweet Sentiment</option>
+	       						<option value="ge">Random Tweets</option>
+	       						<option value="none">Fetch New Tweets</option>
+	       						<option value="none">Site Category with Vectors</option>
+      						</select>
+     					</div>
+					 </div>				
+				</div>
+				<!-- Third column of first row  --> 
+  				<div class="col-md-4">
+    				<div class="panel-body">
+    				<h4>BUILD MODEL</h4>
+      					<div class="form-group ">
+        				<div class="input-group">
+   					 	<input class="btn btn-primary" type="submit" value="Next Step" name="submit"><br>
+          			</div>
+        		</div>
+        		</form>
+        	</div>
+        </div>
+        <!-- First row ENDS -->
+		<!-- Content ENDS -->
+        <!-- Scripts -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>	
+        <script src="js/scripts.js"></script>
+        <script src="js/custom.js"></script>
+    </body>
+</html>

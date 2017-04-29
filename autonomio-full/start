@@ -1,0 +1,32 @@
+#!/bin/bash
+echo -e "\n"
+echo -e "+------------------------------------+"
+echo -e "| Autonomio - Augmented Intelligence |"
+echo -e "+------------------------------------+"
+echo -e ""
+echo -e "Please wait while your container is prepared..."
+echo -e ""
+echo -e "You'll be ready to science in just a few secs. "
+echo -e "\n"
+
+VAR=$(docker run -d -p 4141:80 -p 8888:8888 a4428699ee6e)
+
+echo -e "SUCCESS 1/4: your container is running."
+echo -e "\n"
+
+docker exec -i -t $VAR service apache2 start
+
+echo -e "\n"
+echo -e "SUCCESS 2/4: you've entered the container"
+echo -e "\n"
+
+echo -e "SUCCESS 3/4: starting backend"
+echo -e "\n"
+
+echo "c.NotebookApp.token = u''" >> ~/.jupyter/jupyter_notebook_config.py
+jupyter notebook --ip 0.0.0.0 --no-browser --NotebookApp.token= &
+
+echo -e "SUCCESS 4/4: Your container is running...access http://localhost:4141"
+echo -e "\n"
+
+exit
