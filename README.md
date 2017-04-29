@@ -1,6 +1,6 @@
-# full
-A docker container that starts with fully featured Autonomio augmented intelligence workbench with Keras/Tensorflow deep learning backend.
+# Autonomio Deep Learning Workbench
 
+A single docker container that inititalizes on any system to Autonomio Augmented intelligence dashboard. 
 
 ## Docker container contents
 
