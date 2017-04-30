@@ -5,11 +5,11 @@ MODE=$1
 stop(){
 
 	ID=$(docker ps -a | sed '1d' | head -1 | tr -s ' ' | cut -d ' ' -f1)
-	docker stop $ID
+	docker stop $ID > current.id
 
 }
 
-start(){
+new(){
 
 	#!/bin/bash
 	echo -e "\n"
@@ -24,12 +24,13 @@ start(){
 
 	ID=$(docker images | head -2 | tail -1 | tr -s ' ' | cut -d ' ' -f3)
 
-	VAR=$(docker run -d -p 4141:80 -p 4140:8888 $ID)
+	VAR=$(docker run -d -p 4141:80 -p 4140:8123 $ID)
 
 	echo -e "SUCCESS 1/4: your container is running."
 	echo -e "\n"
 
 	docker exec -i -t $VAR service apache2 start >/dev/null
+	docker ps -a | head -2 | tail -1 | cut -d ' ' -f1 > current.id
 
 	echo -e "\n"
 	echo -e "SUCCESS 2/4: you've entered the container"
@@ -37,10 +38,6 @@ start(){
 
 	echo -e "SUCCESS 3/4: starting backend"
 	echo -e "\n"
-
-	echo "c.NotebookApp.token = u''" >> ~/.jupyter/jupyter_notebook_config.py
-	jupyter notebook --ip 0.0.0.0 --no-browser --NotebookApp.token= & >/dev/null
-
 	echo -e "SUCCESS 4/4: Your container is running...access http://localhost:4141"
 	echo -e "\n"
 	echo -e "+------------------------------------------+"
@@ -58,13 +55,38 @@ start(){
 	exit
 }
 
+start(){
+
+	ID=$(cat current.id)
+	docker start $ID > current.id
+	docker exec -i -t $ID service apache2 start >/dev/null
+	docker exec -i -t $ID  jupyter notebook --ip "0.0.0.0" --port=8123 --no-browser --NotebookApp.token= --allow-root
+
+}
+
+destroy(){
+
+	ID=$(cat current.id)
+	docker stop $ID
+	docker rm $ID
+}
+
+shell(){
+
+	ID=$(cat current.id)
+	docker exec -i -t $ID /bin/bash
+}
+
 restart(){
 
 	stop
 	start
 }
 
-if [ "$MODE" == "start" ]; then
+if [ "$MODE" == "new" ]; then
+	new
+
+elif [ "$MODE" == "start" ]; then
 	start
 
 elif [ "$MODE" == "stop" ]; then
@@ -72,6 +94,19 @@ elif [ "$MODE" == "stop" ]; then
 
 elif [ "$MODE" == "restart" ]; then
 	restart
+
+elif [ "$MODE" == "shell" ]; then
+	shell
+
+elif [ "$MODE" == "destroy" ]; then
+	destroy
+
 else
-	echo -e "USE: 'autonomio start' or 'autonomio stop' or 'autonomio restart'"
+
+	echo -e "\n USE:"
+	echo -e "       $ ./container <arg>"
+	echo -e ""
+	echo -e "\n ARGS:"
+	echo -e "       'new','start','stop','destory"
+	echo -e "       'restart','hell'\n"
 fi
