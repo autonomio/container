@@ -10,6 +10,12 @@ As a base image for the container we are using [phusion/baseimage](http://phusio
 
 To simplify use in comparison to regular docker container user interface, we provide our own signle command and argument namespace. New creates a file 'current.id' which is then over-written by all the other commands so as long as destroy or new is called, the commands are "stuck" in the same container. This should minimize the possibility of deleting other containers by accident. 
 
+NOTE: you can only use this once you already have the autonomio image built, which you do by: 
+
+   docker build -t autonomio .
+   
+Once that is done, you can move on to using the provided ./container command. 
+
 To create a new container from image: 
 
     ./container new
