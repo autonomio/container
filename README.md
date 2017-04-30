@@ -2,6 +2,13 @@
 
 A single docker container that inititalizes on any system to Autonomio Augmented intelligence dashboard. 
 
+### Minimum features
+
+- upload data or pick one of the datasets
+- perform train and save model
+- load model and make predictions 
+- GUI and Notebook options
+
 ## Docker container contents
 
 As a base image for the container we are using [phusion/baseimage](http://phusion.github.io/baseimage-docker/). You can find all the additions in the docker file. In addition to that there is a simplified access to container management. 
