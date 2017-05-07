@@ -4,6 +4,7 @@ CMD ["/sbin/my_init"]
 WORKDIR /var/www/html/
 ADD . /var/www/html/
 
+RUN mkdir -p /var/www/html/data_temp
 RUN apt-get update
 RUN apt-get -y install git
 RUN apt-get -y install python-pip
