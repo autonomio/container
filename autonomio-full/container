@@ -60,7 +60,7 @@ start(){
 	ID=$(cat current.id)
 	docker start $ID > current.id
 	docker exec -i -t $ID service apache2 start >/dev/null
-	docker exec -i -t $ID  jupyter notebook --ip "0.0.0.0" --port=8123 --no-browser --NotebookApp.token= --allow-root
+	#docker exec -i -t $ID  jupyter notebook --ip "0.0.0.0" --port=8123 --no-browser --NotebookApp.token= --allow-root
 
 }
 
@@ -107,6 +107,6 @@ else
 	echo -e "       $ ./container <arg>"
 	echo -e ""
 	echo -e "\n ARGS:"
-	echo -e "       'new','start','stop','destory"
-	echo -e "       'restart','hell'\n"
+	echo -e "       'new','start','stop','destroy"
+	echo -e "       'restart','shell'\n"
 fi
