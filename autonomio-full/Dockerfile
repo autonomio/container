@@ -18,7 +18,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install jinja2
 RUN pip install jupyter
-pip install git+https://github.com/autonomio/core-module.git
+RUN pip install git+https://github.com/autonomio/core-module.git
 
 RUN python -m spacy download en
 
