@@ -22,8 +22,9 @@ RUN python -m spacy download en
 
 RUN chown www-data:www-data -R /var/www/html/
 RUN service apache2 restart
+RUN update-rc.d apache2 defaults
 
-EXPOSE 80
+EXPOSE 80 8123
 ENV NAME World
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -32,4 +33,13 @@ RUN adduser --disabled-password --gecos "" autonomio
 RUN su autonomio
 RUN cd
 
-RUN cp -r /var/www/html/autonomio /home/autonomio/autonomio
+# Add Tini. Tini operates as a process subreaper for jupyter. This prevents
+# kernel crashes.
+ENV TINI_VERSION v0.6.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
+
+CMD ["jupyter", "notebook", "--port=8123", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=''", "--NotebookApp.disable_check_xsrf=True", "--allow-root", "--NotebookApp.base_url=./examples"]
+
+CMD ["service", "apache2", "start"]
