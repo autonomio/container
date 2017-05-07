@@ -44,4 +44,4 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 
 CMD ["jupyter", "notebook", "--port=8123", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=''", "--NotebookApp.disable_check_xsrf=True", "--allow-root", "--NotebookApp.base_url=./data_temp"]
 
-CMD ["service", "apache2", "start"]
+#CMD ["service", "apache2", "start"]
