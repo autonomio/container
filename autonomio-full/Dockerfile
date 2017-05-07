@@ -18,6 +18,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install jinja2
 RUN pip install jupyter
+pip install git+https://github.com/autonomio/core-module.git
 
 RUN python -m spacy download en
 
@@ -41,6 +42,6 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
-CMD ["jupyter", "notebook", "--port=8123", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=''", "--NotebookApp.disable_check_xsrf=True", "--allow-root", "--NotebookApp.base_url=./examples"]
+CMD ["jupyter", "notebook", "--port=8123", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=''", "--NotebookApp.disable_check_xsrf=True", "--allow-root", "--NotebookApp.base_url=./data_temp"]
 
 CMD ["service", "apache2", "start"]
